@@ -11,18 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-header {
-  background-color: #404040;
-  padding: 1rem;
-  /* <............ 1rem=16px..............> */
-}
-header a {
-  color: #ffffff;
-  font-weight: bold;
-  text-decoration: none;
+.site-container {
+  min-height: 100vh;
 }
 main {
-  padding: 1rem;
+  flex: 1;
 }
 .products {
   display: flex;
@@ -36,7 +29,7 @@ main {
 }
 .product img {
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
 }
 .product-info {
   padding: 1rem;
