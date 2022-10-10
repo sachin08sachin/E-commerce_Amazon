@@ -10,6 +10,11 @@ import Button from 'react-bootstrap/Button';
 
 import { Helmet } from 'react-helmet-async';
 import Rating from '../component/Rating';
+
+
+import { getError } from '../utils';
+import LoadingBox from '../component/LoadingBox';
+import MessageBox from '../component/MessageBox';
 //  <---------------------Get the slug from URL to show it in screen, to do that we need to use Hook(UseParams()) from react-router-dom----------------->
 
 const reducer = (state,action) => {
@@ -44,16 +49,18 @@ function ProductScreen() {
       const result =await axios.get(`/api/products/slug/${slug}`) 
       dispatch({type:'FETCH_SUCCESS', payload:result.data})
     }catch(err){
-       dispatch({type:'FETCH_FAILURE', payload:err.message})
+       dispatch({type:'FETCH_FAILURE', payload: getError(err)})
     }
   };
   fetchData();
   },[slug])
 
   return loading? (
-    <div>Loading...</div>
+    <div>  <LoadingBox />    </div>
   ) : error? (
-    <div>{error}</div>
+    <div>
+      <MessageBox variant="danger">{error}</MessageBox>
+    </div>
   ) : ( <div>
     <Row>
         <Col md={6}>

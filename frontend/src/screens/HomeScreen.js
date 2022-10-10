@@ -7,6 +7,10 @@ import Col from 'react-bootstrap/Col';
 import Product from '../component/Product.js';
 import { Helmet } from 'react-helmet-async';
 
+
+import LoadingBox from '../component/LoadingBox.js';
+import MessageBox from '../component/MessageBox.js';
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
@@ -49,9 +53,11 @@ function HomeScreen() {
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (
-          <div>Loading...</div>
+          <div>   <LoadingBox />     </div>
         ) : error ? (
-          <div>{error}</div>
+          <div>
+             <MessageBox variant="danger">{error}</MessageBox>
+          </div>
         ) : (
           <Row>
             {products.map((product) => (
